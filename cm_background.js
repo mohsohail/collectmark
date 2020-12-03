@@ -8,38 +8,45 @@ chrome.tabs.query({}, function (tabs) {
   let urlsToBookmark = [];
   if (tabs.length) {
     tabs.forEach(function (tab) {
-      urlsToBookmark.push(tab.url);
+      console.log("=>>", tab);
+      const { title, url } = tab;
+      urlsToBookmark.push({
+        title,
+        url,
+      });
     });
   }
   if (urlsToBookmark.length !== 0) {
-    searchBookmark(urlsToBookmark);
+    // searchBookmark(urlsToBookmark);
+    bookmarkUrls(urlsToBookmark);
   }
 });
 
-function searchBookmark(urlsToBookmark) {
-  chrome.bookmarks.search({ title: "Collectmarks" }, function (folder) {
-    if (folder.length !== 0) {
-      chrome.bookmarks.create(
-        {
-          parentId: bookmarkFolderMap["bookmarksBar"],
-          title: "Collectmarks",
-        },
-        function () {
-          bookmarkUrls(urlsToBookmark);
-        }
-      );
-    } else {
-      bookmarkUrls(urlsToBookmark);
-    }
-  });
-}
+// TODO: Implement a search and create inside folder bookmark
+// function searchBookmark(urlsToBookmark) {
+//   chrome.bookmarks.search({ title: "Collectmarks" }, function (folder) {
+//     if (folder.length !== 0) {
+//       chrome.bookmarks.create(
+//         {
+//           parentId: bookmarkFolderMap["bookmarksBar"],
+//           title: "Collectmarks",
+//         },
+//         function () {
+//           bookmarkUrls(urlsToBookmark);
+//         }
+//       );
+//     } else {
+//       bookmarkUrls(urlsToBookmark);
+//     }
+//   });
+// }
 
 function bookmarkUrls(urls) {
-  urls.forEach(function (url) {
+  urls.forEach(function (urlData) {
     chrome.bookmarks.create({
       parentId: bookmarkFolderMap["bookmarksBar"],
-      title: "Collectmarks",
-      url: url,
+      title: urlData.title,
+      url: urlData.url,
     });
   });
 }
