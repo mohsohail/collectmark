@@ -9,7 +9,7 @@
       "css": ["cm_style.css"]
     }
   ],
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "bookmarks"],
   "background": {
     "scripts": ["cm_background.js"]
   },

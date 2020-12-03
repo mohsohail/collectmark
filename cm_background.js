@@ -1,16 +1,45 @@
+const bookmarkFolderMap = {
+  bookmarksBar: "1",
+  otherBookmarksBar: "2",
+  mobileBookmarksBar: "3",
+};
+
 chrome.tabs.query({}, function (tabs) {
-  console.log(tabs);
+  let urlsToBookmark = [];
   if (tabs.length) {
-    let urls = [];
     tabs.forEach(function (tab) {
-      urls.push(tab.url);
+      urlsToBookmark.push(tab.url);
     });
-    console.log(urls);
+  }
+  if (urlsToBookmark.length !== 0) {
+    searchBookmark(urlsToBookmark);
   }
 });
 
-// chrome.browserAction.onClicked.addListener(buttonClicked);
+function searchBookmark(urlsToBookmark) {
+  chrome.bookmarks.search({ title: "Collectmarks" }, function (folder) {
+    if (folder.length !== 0) {
+      chrome.bookmarks.create(
+        {
+          parentId: bookmarkFolderMap["bookmarksBar"],
+          title: "Collectmarks",
+        },
+        function () {
+          bookmarkUrls(urlsToBookmark);
+        }
+      );
+    } else {
+      bookmarkUrls(urlsToBookmark);
+    }
+  });
+}
 
-// function buttonClicked(tabs) {
-//   chrome.tabs.sendMessage(tabs.id, { hello: "world" });
-// }
+function bookmarkUrls(urls) {
+  urls.forEach(function (url) {
+    chrome.bookmarks.create({
+      parentId: bookmarkFolderMap["bookmarksBar"],
+      title: "Collectmarks",
+      url: url,
+    });
+  });
+}
