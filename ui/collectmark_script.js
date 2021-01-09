@@ -4,8 +4,8 @@ const bookmarkFolderMap = {
   mobileBookmarksBar: "3",
 };
 
-const button = document.querySelector("button");
-button.addEventListener("click", handleClick);
+const actionBtn = document.querySelector("a");
+actionBtn.addEventListener("click", handleClick);
 
 function handleClick() {
   chrome.tabs.query({}, function (tabs) {

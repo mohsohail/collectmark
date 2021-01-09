@@ -1,8 +1,50 @@
+body {
+  font-family: Gill Sans, Verdana;
+}
 .container {
+  background-color: #f2cf1d;
+  width: 300px;
+  border-radius: 20px;
+}
+.card {
+  padding: 20px;
+}
+.card-body {
   display: flex;
-  height: 150px;
-  width: 150px;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-flow: column;
+}
+
+.card-text-container {
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: normal;
+  text-align: center;
+  color: #18298c;
+}
+
+.card-button-container {
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+a {
+  background-color: #18298c;
+  box-shadow: 0 5px 0 #04bf8a;
+  color: white;
+  padding: 8px 22px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+a:active {
+  box-shadow: none;
+  top: 5px;
 }
