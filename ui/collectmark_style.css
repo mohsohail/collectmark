@@ -1,10 +1,11 @@
 body {
+  margin: 0;
+  padding: 0;
   font-family: Gill Sans, Verdana;
 }
 .container {
   background-color: #f2cf1d;
   width: 300px;
-  border-radius: 20px;
 }
 .card {
   padding: 20px;
@@ -18,18 +19,19 @@ body {
 .card-text-container {
   font-size: 16px;
   line-height: 24px;
-  text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: normal;
   text-align: center;
   color: #18298c;
+  margin-bottom: 12px;
 }
 
 .card-button-container {
-  margin-top: 32px;
+  margin-top: 12px;
   margin-bottom: 12px;
 }
 a {
+  display: block;
   background-color: #18298c;
   box-shadow: 0 5px 0 #04bf8a;
   color: white;
